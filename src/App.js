@@ -5,6 +5,20 @@ import './App.css';
 class App extends Component {
 
 
+  removeTodo(index) {
+    let todos = this.state.todos
+    let todo = todos.find(function(todo) {
+      return todo.counter === index
+    })
+
+    todos.splice(todo, 1)
+
+    this.setState({
+      todos: todos
+    })
+  }
+
+
   addTodo(e) {
     // the default behavior of a form is to submit and refresh the page, so we put e.preventDefault to prevent that from happening
     e.preventDefault()
@@ -19,6 +33,7 @@ class App extends Component {
     counter+=1
     let todos = this.state.todos
 
+    // this will add our todo object to our todos array
     todos.push(todo)
 
     this.setState({
@@ -37,6 +52,7 @@ class App extends Component {
     super();
     // the firts this is being referred to the base component thats why we are using .bind
     this.addTodo = this.addTodo.bind(this)
+    this.removeTodo = this.removeTodo.bind(this)
     this.state = {
       todos: [],
       title: 'React Simple Todo App',
@@ -45,16 +61,9 @@ class App extends Component {
 
   }
 
-
-
-
-
   render() {
     let title = this.state.title;
     let todos = this.state.todos
-
-
-
 
     return (
       <div className="App">
@@ -65,7 +74,7 @@ class App extends Component {
           <button onClick={this.addTodo}>Add</button>
         </form>
         <ul>
-          {todos.map((todo => <li key={todo.counter}>{todo.name} {todo.completed}</li>))}
+          {todos.map((todo => <li key={todo.counter}>{todo.name} {todo.completed} <button onClick={this.removeTodo.bind(null, todo.counter)}>DONE!</button></li> ))}
         </ul>
       </div>
     );
