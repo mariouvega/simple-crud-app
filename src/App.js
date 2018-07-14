@@ -90,7 +90,7 @@ class App extends Component {
       <div className="App">
         <h1 className="title">{title}</h1>
         <form ref="todoForm" className="todoForm">
-          <input type="text" ref="name" placeholder="Lets DO IT!!" className="formFeild"/>
+          <input type="text" ref="name" placeholder="What needs to be done?" className="formFeild"/>
           <input type="text" ref="completed" placeholder="By when?" className="formFeild"/>
           <button onClick={this.addTodo}>Add</button>
         </form>
